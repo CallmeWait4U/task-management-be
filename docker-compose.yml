@@ -1,0 +1,45 @@
+version: '3.9'
+
+networks:
+  gateway-network:
+    # external: true
+    
+volumes:
+  mysqldb-data:
+
+services:
+      
+  local-mysql:
+    image: mysql:8.0.33
+    container_name: local-mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - mysqldb-data:/var/lib/mysql
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+      - MYSQL_ROOT_PASSWORD=abc12345
+      - MYSQL_DATABASE=orgchart
+      - MYSQL_USER=orgchart
+      - MYSQL_PASSWORD=abc12345
+    networks:
+      - gateway-network
+  
+  dev:
+    container_name: nestjs_api_dev
+    image: nestjs-api-dev:1.0.0
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    command: yarn start:dev
+    ports:
+      - 3001:3001
+    environment:
+      HOST_DATABASE: local-mysql:3306
+    networks:
+      - gateway-network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped

@@ -6,19 +6,6 @@
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
@@ -71,3 +58,27 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Swagger document
+
+Sau khi chạy ứng dụng, ta có thể xem document APIs tại: http://localhost:3001/docs
+
+## Mở rộng và tối ưu hóa hiệu suất trong tương lai
+
+- Về mở rộng, nếu mã nguồn quá lớn, có thể ảnh hưởng đến tốc độ chạy của ứng dụng, để giải quyết, mã nguồn có thể chuyển sang Microservice, NestJS có hỗ trợ các thư viện MQTT, RabbitMQ, Kafka,... để phục vụ nhu cầu giao tiếp giữa các services. Ngoài ra, NestJS cũng sử dụng được gRPC để hỗ trợ cân bằng tải, xác thực,...
+
+- Về tối ưu hóa hiệu suất, mã nguồn cần được refactor code để không chứa những đoạn code vô nghĩa. Các câu lệnh truy vấn DB cũng cần được tối ưu.
+
+## An toàn và bảo mật thông tin người dùng
+
+- Không thể đảm bảo 100% nhưng ứng dụng được xây dựng với vài kỹ thuật bảo mật: Xác thực người dùng truy cập API thông qua JWT Token (trừ API Đăng ký, Đăng nhập),  các thông tin quan trọng như mật khẩu, token đều được mã hóa trước khi lưu trữ xuống Database.
+
+## Triển khai ứng dụng
+
+- Viết dockerfile (đã viết trong repo) để đóng gói ứng dụng.
+
+- Viết docker-compose để khởi tạo các container gồm ứng dụng NestJS chạy trên cổng 3001, cơ sở dữ liệu MySQL chạy trên cổng 3306.
+
+- Thuê 1 máy chủ (có thể dùng AWS EC2), cấu hình cho máy chủ.
+
+- Clone source code về máy chủ, chạy file docker-compose.yml với lệnh docker compose up -d và ứng dụng sẽ chạy trên máy chủ ở cổng 3001.
